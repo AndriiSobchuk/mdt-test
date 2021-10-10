@@ -1,0 +1,65 @@
+* d181441 (HEAD -> master, origin/master, origin/HEAD) Final version
+* bf0f9af check blocklist
+* 857b7b6 Hooks policy
+* f6d32eb Add files via upload
+* 2e38a0b Task 4
+* 7261107 Task 4
+* 7546879 Add files via upload
+* 5cd7c8d Add files via upload
+* b83ee85 Update README.md
+* 7e443ca Add files via upload
+* 9376810 Task 2 script
+* 258b8e4 Add files via upload
+* c4e3880 Create info.txt
+* 208c9f8 Delete test_cron.txt
+* dbcea9b Delete SCREENS_SCRIPTS
+* 89bf73d Create SCREENS_SCRIPTS
+* 71a80c0 New folder
+* 0304195 Update README.md
+*   9cd70f9 Merge branch 'master' of github.com:AndriiSobchuk/material-design-template
+|\  
+| * cc1f9a4 Update README.md
+| * afb9c46 Update README.md
+| * eeba3ae Update README.md
+| * 7fb7396 Update README.md
+| * 4b08257 Update README.md
+| * b038393 1st
+* | 7a96c9a Folder for task data
+|/  
+* 26436ee 9th
+* 24e0f0e 8th
+* fb7d15c 7th
+* 784ca46 5th
+* 4dc7b79 4th
+* 77602de 3d
+* 452c52b 2d
+* 2249ed1 1st
+* d8ae74b Add changes to /www/index.html
+* 1f41492 Update contact.php
+* 9395a5c Change in path of fonts directory
+*   1dbc856 Merge pull request #7 from joashp/fix_mobile_nav
+|\  
+| * 90f877c Fixed mobile navbar closing issue. Updated Materialize lib. Added favicon.
+|/  
+*   4258dce Merge pull request #5 from joashp/feature_contact
+|\  
+| * f797b6e Fixed issue of URL for fonts/icons
+| * 00c98b7 Contact form included php. To send emails
+|/  
+*   5354d75 Merge pull request #4 from joashp/fix_performance
+|\  
+| * 6518865 Added jquery and minified js and css to increase site performance
+|/  
+*   6e2dd8d Merge pull request #3 from perjo927/master
+|\  
+| * df7bcb0 Update index.html
+|/  
+*   b609b52 Merge pull request #1 from fleeting/patch-1
+|\  
+| * 9f93e21 Fixing typo in project name.
+|/  
+* 7008d03 Hamburger icon fixed for website on smaller devices
+* 1cb8818 Added mobile screenshots
+* 3fa6ed0 Update README.md
+* 23e0cb0 Initial commit
+* 3565fe2 :circus_tent: Added .gitattributes & .gitignore files
