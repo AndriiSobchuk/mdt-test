@@ -76,7 +76,7 @@
     #set -x
     #check if restricted words exit somewhere in the code AND reject the commit if it is!!!
 
-    if [[ $(grep -rnw --exclude-dir=hooks /home/andrii/material-design-template/ -e shit) ]]; then
+    if [[ $(grep -rnw --exclude-dir=hooks --exclude=README.md /home/andrii/material-design-template/ -e shit) ]]; then
 
     #FAIL SCENARIO
 
