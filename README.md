@@ -61,7 +61,7 @@
       cd $(HOME)/material-design-template && /usr/bin/git pull origin
       echo $(date) " pull is successful" >> $(HOME)/material-design-template/pull_mdt.txt 
 
-<p> Screen with crontab settings and results you can find in folder SCREENS_SCRIPTS </p>
+<p> Screen with crontab settings and results you can find in folder SCREENS_SCRIPTS or you can find it here:  material-design-template/pull_mdt.txt </p>
 
 <p> Task 5) Update index.html from your machine, push changes to Git and confirm updated content on web page </p>
 <p> I used to change the configuration of file /etc/nginx/sites-enabled/default </p>
