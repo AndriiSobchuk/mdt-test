@@ -92,6 +92,54 @@ sudo systemctl status nginx
 
 ls ~/material-design-template
 
+<p> Task 3) Fork GitHub repo </p>
+<p> The repo given in the task had been forked to my GitHub (folder SCREENS_SCRIPTS contains screenshot) </p>
+
+<p> Task 4) Setup a cron job for a regular (every 1 min) checkout from main branch </p>
+<p> To this task I create a script and put it on cron jobs </p>
+##
+#!/bin/bash
+#!/usr/bin/env bash
+
+cd $(HOME)/material-design-template && /usr/bin/git pull origin
+echo $(date) " pull is successful" >> $(HOME)/material-design-template/pull_mdt.txt 
+
+<p> Screen with crontab settings and results you can find in folder SCREENS_SCRIPTS </p>
+
+<p> Task 5) Update index.html from your machine, push changes to Git and confirm updated content on web page </p>
+<p> I used to change the configuration of file /etc/nginx/sites-enabled/default </p>
+<p> The default parameter root /var/www/html had been changed to /home/andrii/material-design-template/www/ and in index.html I made: 1) a change MD Template -> Andrii Sobchuk Template 2) restart Nginx (sudo systemctl restart nginx) (folder SCREENS_SCRIPTS contains screenshot / or you can check the Public IP address: http://35.222.234.112/); after all the changes had been commited and pushed into GitHub repository </p>
+
+<p> Task 6) Configure GitHub hook instead of cron (use a local git hooks for validation of incoming commits) and reject commits if the word from the blacklist hab been find  </p>
+<p> I create a file with execution permissions at my local repo $(REPO_PATH)/.git/hooks -> file .sh named pre-commit that search for blacklisted word to block commit in case of policy compliance. The script has a following code: </p>
+
+    #!/bin/bash
+
+    #!/usr/bin/env bash
+    #set -x
+    #check if restricted words exit somewhere in the code AND reject the commit if it is!!!
+
+#/usr/bin/git diff HEAD > /var/log/diff.log
+
+########################### 
+
+if [[ $(grep -rnw --exclude-dir=hooks /home/andrii/material-design-template/ -e shit) ]]; then
+
+#FAIL SCENARIO
+
+	echo "BLOCKED BY pre-commit policy! Check your code again!!!!!
+	echo $(date) the commit had been blocked by policy reason >> failed-commits-log.txt
+	exit 1
+     else 
+          #SUCCESS SCENARIO
+
+	echo "Success. Commit is done!"
+	echo $(date) the commit had been successful >> success-commits-log.txt
+        exit 0
+     fi
+
+
+
 <p> VM had been setup on GCP (folder SCREENS_SCRIPTS contain screenshot) </p>
 <p>MD One page template is fully responsive and free to use. This HTML template is based on <a href="http://materializecss.com/">Materialize</a>, a CSS Framework based on Material Design.</p>
 <a href="http://joashpereira.com/templates/material_one_pager/">View Demo</a>
