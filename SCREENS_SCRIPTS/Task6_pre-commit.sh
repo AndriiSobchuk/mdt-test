@@ -7,7 +7,7 @@
 
 #################################################### 
 
-if [[ $(grep -rnw --exclude-dir=hooks --exclude=README.md /home/andrii/material-design-template/ -e shit) ]]; then
+if [[ $(grep -rnw --exclude-dir={hooks,SCREENS_SCRIPTS} --exclude=README.md /home/andrii/material-design-template/ -e shit) ]]; then
 #FAIL SCENARIO
         echo "BLOCKED BY pre-commit policy! Check your code again!!!!!"
         echo $(date) the commit had been blocked by policy reason >> failed-commits-log.txt
