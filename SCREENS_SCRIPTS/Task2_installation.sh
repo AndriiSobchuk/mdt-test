@@ -55,7 +55,7 @@ git clone git@github.com:AndriiSobchuk/material-design-template.git
 
 
 ##### CHECKING THE STATUS ##############
-# uncomment if necessaty 
+# uncomment if necessary 
 git --version
 nginx -v 
 sudo systemctl status nginx
