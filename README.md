@@ -58,7 +58,7 @@
       #!/bin/bash
       #!/usr/bin/env bash
 
-      cd $HOME/material-design-template && /usr/bin/git pull origin
+      cd $HOME/material-design-template && /usr/bin/git pull origin master
       echo $(date) " pull is successful" >> $HOME/material-design-template/pull_mdt.txt 
 
 <p> Screen with crontab settings and results you can find in folder SCREENS_SCRIPTS or you can find it here:  material-design-template/pull_mdt.txt </p>
