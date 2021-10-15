@@ -92,7 +92,34 @@
      fi
 
 
+<p> Task 8) Merge feature branch with main, rebase git merge commit, squash all commits  </p>
 
+
+    # make some changes in master branch 
+
+    git checkout master
+    # do something with data
+    git add .
+    git commit -m "main changes"
+
+    # create and make some changes in feature branch 
+
+    git checkout -b feature
+    # do something with data
+    git add .
+    git commit -m “changes at feature branch”
+
+    # checkout to master branch and make final commit 
+
+    git checkout master
+    # do something with data
+    git add .
+    git commit -m "Final commit to master branch”
+
+    # merge master and feature branches
+
+    git checkout master
+    git merge feature
 
 <h2>License</h2>
 Material Design One Page HTML Template is licensed under the <a href="http://sam.zoy.org/wtfpl/">WTFPL license</a>.
