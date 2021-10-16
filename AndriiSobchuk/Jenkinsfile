@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Package') {
             steps {
-                sh 'tar -czvf compressed.${BUILD_ID}.tar.gz /home'
+                sh 'tar -czvf compressed.${BUILD_ID}.tar.gz /home/jenkins'
                 // ADD tar --exclude='./folder1'--exclude='./folder2'-czvf comp...
                 archiveArtifacts "**/*.tar.gz"
             }
