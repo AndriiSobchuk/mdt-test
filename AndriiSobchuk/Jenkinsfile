@@ -1,1 +1,39 @@
-Hello
+pipeline {
+    agent {
+        label ('nodejs')
+    }
+    tools {
+        nodejs ("nodejs-agent-1")
+    }
+    
+    stages {
+        stage ('Compress-js-css-files') {
+            parallel {
+                stage ('uglify-js') {
+                    steps {
+                        nodejs(nodeJSInstallationName: 'nodejs-agent-1') {
+                          //  sh 'uglifyjs -o www/min/*.js www/js/*.js'
+                            sh 'echo Andrii'
+                        }
+                    }
+                }
+                stage ('clean-css') {
+                    steps {
+                        nodejs(nodeJSInstallationName: 'nodejs-agent-1') {
+                          //  sh 'cleancss -o www/min/*.css www/css/*.css'
+                            sh 'echo Hello'
+                        }
+                    }
+                }
+                
+            }
+        }
+        stage('Package') {
+            steps {
+                sh 'tar -czvf compressed.${BUILD_ID}.tar.gz /home'
+                // ADD tar --exclude='./folder1'--exclude='./folder2'-czvf comp...
+                archiveArtifacts "**/*.tar.gz"
+            }
+        }
+    }
+}
