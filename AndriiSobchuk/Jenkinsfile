@@ -12,16 +12,16 @@ pipeline {
                 stage ('uglify-js') {
                     steps {
                         nodejs(nodeJSInstallationName: 'nodejs-agent-1') {
-                            //sh 'uglifyjs -o www/min/*.js www/js/*.js'
-                            sh 'echo Andrii'
+                            sh 'uglifyjs -o www/min/*.js www/js/*.js'
+                            //sh 'echo Andrii'
                         }
                     }
                 }
                 stage ('clean-css') {
                     steps {
                         nodejs(nodeJSInstallationName: 'nodejs-agent-1') {
-                            //sh 'cleancss -o www/min/*.css www/css/*.css'
-                            sh 'echo Hello'
+                            sh 'cleancss -o www/min/*.css www/css/*.css'
+                            //sh 'echo Hello'
                         }
                     }
                 }
