@@ -21,7 +21,7 @@ pipeline {
                     steps {
                         nodejs(nodeJSInstallationName: 'nodejs-agent-1') {
                             sh 'cleancss -o www/min/*.css www/css/*.css'
-                            //sh 'echo Hello'
+                            sh 'echo Hello'
                         }
                     }
                 }
