@@ -12,7 +12,7 @@ pipeline {
                 stage ('uglify-js') {
                     steps {
                         nodejs(nodeJSInstallationName: 'nodejs-agent-1') {
-                            //sh 'uglifyjs -o www/min/*.js www/js/*.js'
+                            sh 'uglifyjs -o www/min/*.js www/js/*.js'
                             sh 'echo Andrii'
                         }
                     }
@@ -20,7 +20,7 @@ pipeline {
                 stage ('clean-css') {
                     steps {
                         nodejs(nodeJSInstallationName: 'nodejs-agent-1') {
-                            //sh 'cleancss -o www/min/*.css www/css/*.css'
+                            sh 'cleancss -o www/min/*.css www/css/*.css'
                             sh 'echo Hello'
                         }
                     }
@@ -32,10 +32,10 @@ pipeline {
             steps {
                 sh 'mkdir artifacts'
                 echo "Running ${env.BUILD_ID}"
-                //sh 'tar -czvf  artifacts/compressed.${BUILD_ID}.tar.gz .'
+                sh 'tar -czvf  artifacts/compressed.${env.BUILD_ID}.tar.gz .'
                 //sh 'tar --exclude ="www/js" --exclude="www/css"  --exclude=".git" -czvf  archive-artifacts/compressed.${BUILD_ID}.tar.gz .'
                 // ADD tar --exclude='./folder1'--exclude='./folder2'-czvf comp...
-                //archiveArtifacts artifacts: "artifacts/compressed.${BUILD_ID}.tar.gz", fingerprint: true
+                archiveArtifacts artifacts: "artifacts/compressed.${env.BUILD_ID}.tar.gz", fingerprint: true
             }
         }
     }
