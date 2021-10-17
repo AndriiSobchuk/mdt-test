@@ -33,7 +33,7 @@ pipeline {
                 sh 'mkdir artifacts'
                 echo "Running ${env.BUILD_ID}"
                 //sh "tar -czvf  artifacts/compressed.${env.BUILD_ID}.tar.gz ."
-                sh "tar --exclude ="www/js" --exclude="www/css"  --exclude=".git" -czvf  artifacts/compressed.${BUILD_ID}.tar.gz ."
+                sh "tar --exclude ='www/js' --exclude='www/css'  --exclude='.git' -czvf  artifacts/compressed.${BUILD_ID}.tar.gz ."
                 // ADD tar --exclude='./folder1'--exclude='./folder2'-czvf comp...
                 archiveArtifacts artifacts: "artifacts/compressed.${env.BUILD_ID}.tar.gz", fingerprint: true
             }
