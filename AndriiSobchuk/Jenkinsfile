@@ -62,11 +62,11 @@ pipeline {
         }
         }
        }*/
-      stage ('Publish Build Info') {
+       stage ('Publish Build Info') {
             steps {
                 rtPublishBuildInfo (
-                    serverId: "Jfrog"
-                    def uploadSpec = """{
+                    serverId: "Jfrog",
+                    uploadSpec: """{
                     "files": [
                     {
                            "pattern": "artifacts/compressed.${BUILD_ID}.tar.gz",
