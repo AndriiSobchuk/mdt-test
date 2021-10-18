@@ -30,11 +30,11 @@ pipeline {
         }
         stage('Package') {
             steps {
-                sh 'mkdir artifacts'
+                sh 'mkdir artifacts-jfrog'
                 
-                sh "tar --exclude ='./www/js/*' --exclude='./www/css'  --exclude='.git' --exclude='artifacts' -czvf  artifacts/compressed.${BUILD_ID}.tar.gz ."
+                sh "tar --exclude ='./www/js/*' --exclude='./www/css'  --exclude='.git' --exclude='artifacts-jfrog' -czvf  artifacts-jfrog/compressed.${BUILD_ID}.tar.gz ."
              
-                archiveArtifacts artifacts: "artifacts/compressed.${env.BUILD_ID}.tar.gz", fingerprint: true
+                archiveArtifacts artifacts: "artifacts-jfrog/compressed.${env.BUILD_ID}.tar.gz", fingerprint: true
             }
         }
        /*stage ('upload') {
@@ -69,7 +69,7 @@ pipeline {
                     uploadSpec: """{
                     "files": [
                     {
-                           "pattern": "artifacts/compressed.${BUILD_ID}.tar.gz",
+                           "pattern": "artifacts-jfrog/compressed.${BUILD_ID}.tar.gz",
                            "target": "default-generic-local/compressed.${BUILD_ID}.tar.gz"
                      }
                        ]
