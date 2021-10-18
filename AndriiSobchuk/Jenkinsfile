@@ -37,7 +37,7 @@ pipeline {
                 archiveArtifacts artifacts: "artifacts/compressed.${env.BUILD_ID}.tar.gz", fingerprint: true
             }
         }
-       stage ('upload') {
+       /*stage ('upload') {
            steps {
             gitlabCommitStatus("upload") {
                 def server = Artifactory.server "artifactory@Jfrog"
@@ -61,6 +61,21 @@ pipeline {
                 server.publishBuildInfo buildInfo
         }
         }
-       }
+       }*/
+      stage ('Publish Build Info') {
+            steps {
+                rtPublishBuildInfo (
+                    serverId: "Jfrog"
+                    def uploadSpec = """{
+                    "files": [
+                    {
+                           "pattern": "artifacts/compressed.${BUILD_ID}.tar.gz",
+                           "target": "default-generic-local/compressed.${BUILD_ID}.tar.gz"
+                     }
+                       ]
+                     }"""
+                )
+            }
+        }
     }
 }
