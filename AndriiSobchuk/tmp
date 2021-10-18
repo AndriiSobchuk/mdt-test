@@ -1,0 +1,15 @@
+node ('nodejs') {
+    stage ('NodeJS Build') {
+        env.NODEJS_HOME = tool 'nodejs-agent-1'
+    }
+    stage ('Compress-js-css-files') {
+        p_steps = [ "js" : { sh '${NODEJS_HOME}/bin/uglifyjs -o www/min/*.js www/js/*.js' },
+           "css" : { sh '${NODEJS_HOME}/bin/cleancss -o www/min/*.css www/css/*.css' }]
+        p_steps
+    }
+    stage ('Package'){
+        //sh 'mkdir artifacts-scripts'
+        sh 'tar --exclude=www/js --exclude=www/css  --exclude=.git --exclude=artifacts -czvf  artifacts-scripts/compressed.tar .'
+        //archiveArtifacts artifacts: "artifacts-scripts/compressed.${env.BUILD_ID}.tar.gz", fingerprint: true
+    }
+}
