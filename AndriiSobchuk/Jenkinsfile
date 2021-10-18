@@ -62,6 +62,8 @@ pipeline {
         }
         }
        }*/
+        
+        //https://stackoverflow.com/questions/39412014/how-to-set-jenkinsfile-for-upload-maven-artifact-to-artifactory
        stage ('Publish Build Info') {
             steps {
                 rtPublishBuildInfo (
