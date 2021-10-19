@@ -1,89 +1,15 @@
-pipeline {
-    agent {
-        label ('nodejs')
+node ('nodejs') {
+    stage ('NodeJS Build') {
+        env.NODEJS_HOME = tool 'nodejs-agent-1'
     }
-    tools {
-        nodejs ("nodejs-agent-1")
+    stage ('Compress-js-css-files') {
+        p_steps = [ "js" : { sh '${NODEJS_HOME}/bin/uglifyjs -o www/min/*.js www/js/*.js' },
+           "css" : { sh '${NODEJS_HOME}/bin/cleancss -o www/min/*.css www/css/*.css' }]
+        p_steps
     }
-    
-    stages {
-        stage ('Compress-js-css-files') {
-            parallel {
-                stage ('uglify-js') {
-                    steps {
-                        nodejs(nodeJSInstallationName: 'nodejs-agent-1') {
-                            sh 'uglifyjs -o www/min/*.js www/js/*.js'
-                            
-                        }
-                    }
-                }
-                stage ('clean-css') {
-                    steps {
-                        nodejs(nodeJSInstallationName: 'nodejs-agent-1') {
-                            sh 'cleancss -o www/min/*.css www/css/*.css'
-                            
-                        }
-                    }
-                }
-                
-            }
-        }
-        stage('Package') {
-            steps {
-                sh 'mkdir artifacts-jfrog'
-                
-                sh "tar --exclude ='./www/js/*' --exclude='./www/css'  --exclude='.git' --exclude='artifacts-jfrog' -czvf  artifacts-jfrog/compressed.${BUILD_ID}.tar.gz ."
-             
-                archiveArtifacts artifacts: "artifacts-jfrog/compressed.${env.BUILD_ID}.tar.gz", fingerprint: true
-            }
-        }
-       /*stage ('upload') {
-           steps {
-            gitlabCommitStatus("upload") {
-                def server = Artifactory.server "artifactory@Jfrog"
-                def buildInfo = Artifactory.newBuildInfo()
-                buildInfo.env.capture = true
-                buildInfo.env.collect()
-
-                def uploadSpec = """{
-                    "files": [
-                {
-                    "pattern": "artifacts/compressed.${BUILD_ID}.tar.gz",
-                    "target": "default-generic-local/compressed.${BUILD_ID}.tar.gz"
-                }
-                  ]
-                }"""
-                // Upload to Artifactory.
-                server.upload spec: uploadSpec, buildInfo: buildInfo
-
-                buildInfo.retention maxBuilds: 10, maxDays: 7, deleteBuildArtifacts: true
-                 // Publish build info.
-                server.publishBuildInfo buildInfo
-        }
-        }
-       }*/
-        
-        //https://stackoverflow.com/questions/39412014/how-to-set-jenkinsfile-for-upload-maven-artifact-to-artifactory
-       stage ('Publish Build Info') {
-            steps {
-                rtPublishBuildInfo (
-                    serverId: "Jfrog",
-                    uploadSpec: """{
-                    "files": [
-                    {
-                           "pattern": "artifacts-jfrog/compressed.${BUILD_ID}.tar.gz",
-                           "target": "default-generic-local/compressed.${BUILD_ID}.tar.gz"
-                     }
-                       ]
-                     }"""
-                )
-                def buildInfo: Artifactory.newBuildInfo()
-                server.upload spec: uploadSpec, buildInfo: buildInfo
-
-                buildInfo.retention maxBuilds: 10, maxDays: 7, deleteBuildArtifacts: true
-                // Publish build info.
-                server.publishBuildInfo buildInfo
-            }
-        }
+    stage ('Package'){
+        //sh 'mkdir artifacts-scripts'
+        sh 'tar --exclude=www/js --exclude=www/css  --exclude=.git --exclude=artifacts -czvf  artifacts-scripts/compressed.tar .'
+        //archiveArtifacts artifacts: "artifacts-scripts/compressed.${env.BUILD_ID}.tar.gz", fingerprint: true
     }
 }
