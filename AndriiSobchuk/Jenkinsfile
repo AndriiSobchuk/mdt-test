@@ -77,7 +77,7 @@ pipeline {
                        ]
                      }"""
                 )
-                buildInfo: Artifactory.newBuildInfo()
+                def buildInfo: Artifactory.newBuildInfo()
                 server.upload spec: uploadSpec, buildInfo: buildInfo
 
                 buildInfo.retention maxBuilds: 10, maxDays: 7, deleteBuildArtifacts: true
