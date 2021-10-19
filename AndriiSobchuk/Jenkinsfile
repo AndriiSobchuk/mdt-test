@@ -9,7 +9,7 @@ node ('nodejs') {
     }
     stage ('Package'){
         //sh 'mkdir artifacts-scripts'
-        sh 'tar --exclude=www/js --exclude=www/css  --exclude=.git --exclude=artifacts -exclude=artifacts-scripts -czvf  artifacts-scripts/compressed.tar .'
+        sh 'tar --exclude=www/js --exclude=www/css  --exclude=.git --exclude=artifacts -exclude=artifacts-scripts -czf  artifacts-scripts/compressed.tar .'
         //archiveArtifacts artifacts: "artifacts-scripts/compressed.${env.BUILD_ID}.tar.gz", fingerprint: true
     }
 }
