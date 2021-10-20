@@ -8,7 +8,7 @@ node ('nodejs') {
         p_steps
     }
     stage ('Package'){
-        //sh 'mkdir artifacts-scripts'
+        sh 'mkdir artifacts-scripts'
        
         //sh 'mkdir artifacts'
         sh "tar --exclude=www/js --exclude=www/css  --exclude=.git --exclude=artifacts --exclude=artifacts-scripts -czf  artifacts-scripts/compressed.${BUILD_ID}.tar.gz ."      
