@@ -13,7 +13,7 @@ node ('nodejs') {
         //sh 'mkdir artifacts'
         sh "tar --exclude=www/js --exclude=www/css  --exclude=.git --exclude=artifacts --exclude=artifacts-scripts -czf  artifacts-scripts/compressed.${BUILD_ID}.tar.gz ."      
               //  sh "tar --exclude ='./www/js/*' --exclude='./www/css'  --exclude='.git' --exclude='artifacts' -czvf  artifacts/compressed.${BUILD_ID}.tar.gz ."
-        archiveArtifacts artifacts: "artifacts/compressed.${env.BUILD_ID}.tar.gz", fingerprint: true
+        archiveArtifacts artifacts: "artifacts-scripts/compressed.${env.BUILD_ID}.tar.gz", fingerprint: true
              
                 
         //archiveArtifacts artifacts: "artifacts-scripts/compressed.${env.BUILD_ID}.tar.gz", fingerprint: true
